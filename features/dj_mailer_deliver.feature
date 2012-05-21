@@ -27,3 +27,4 @@ Scenario: Email is enqueued successfully
     """
   Then a delayed job object should be returned
   And I should see a new delayed_job record in the table
+  And the email queue should be empty

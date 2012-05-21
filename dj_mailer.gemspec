@@ -15,13 +15,14 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = DjMailer::VERSION
 
+  gem.add_dependency 'actionmailer'
   gem.add_dependency 'delayed_job_active_record'
-  gem.add_dependency 'actionmailer', '3.0.5'
+
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'sqlite3'
   gem.add_development_dependency 'cucumber'
   gem.add_development_dependency 'guard-rspec'
+  gem.add_development_dependency 'activerecord'
   gem.add_development_dependency 'guard-cucumber'
-  gem.add_development_dependency 'activerecord', '3.0.5'
 end

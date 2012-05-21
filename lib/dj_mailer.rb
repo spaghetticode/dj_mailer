@@ -1,3 +1,4 @@
+require 'action_mailer'
 # cucumber complains with require 'dj_mailer/version'
 require File.expand_path('../dj_mailer/version', __FILE__)
 
@@ -14,12 +15,16 @@ module DjMailer
     end
 
     def method_missing_with_delay(method, *args)
-      if caller[1].include?('performable_mailer.rb')
-        method_missing_without_delay(method, *args)
+      if respond_to?(method) and !caller.grep('delayed_job').present?
+        enqueue_with_delayed_job(method, *args)
       else
-        delay.send(method, *args).tap do |dj_instance|
-          dj_instance.extend Deliverable
-        end
+        method_missing_without_delay(method, *args)
+      end
+    end
+
+    def enqueue_with_delayed_job(method, *args)
+      delay.send(method, *args).tap do |dj_instance|
+        dj_instance.extend Deliverable
       end
     end
   end

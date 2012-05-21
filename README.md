@@ -19,15 +19,8 @@ deliver calls as follows:
 
 By adding this gem in your gemfile all your current emails will be automatically
 handled by delayed job without any interface change. At the moment you have
-to setup the delayed job environment (running the migrations for the db) on your
-own.
-
-
-## Note
-
-I could not make the current version of delayed_job_active_record (0.3.2) work
-with recent versions of ActionMailer, it does with 3.0.5. I will investigate
-the reason of the failure ASAP.
+to setup the delayed job environment on your own running the migrations for the
+db.
 
 
 ## Installation
@@ -36,11 +29,23 @@ Add this line to your application's Gemfile:
 ```ruby
   gem 'dj_mailer'
 ```
-And then execute: `$ bundle`
+And then execute: `bundle`
 
 Or install it yourself as:
+```bash
+  gem install dj_mailer
 ```
-  $ gem install dj_mailer
+
+
+## Tests
+
+to run the specs:
+```bash
+  bundle exec rake spec
+```
+to run the cucumber features:
+```bash
+  bundle exec rake cucumber
 ```
 
 

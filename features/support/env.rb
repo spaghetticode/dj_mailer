@@ -1,6 +1,5 @@
 # At the moment delayed_job_active_record is quite broken. It surely works
 # fine with actionmailer 3.0.5
-gem 'actionmailer', '3.0.5'
 require 'action_mailer'
 
 ActionMailer::Base.delivery_method = :test
@@ -8,7 +7,6 @@ ActionMailer::Base.delivery_method = :test
 
 # Forcing actionmailer to v3.0.5 requires also activerecord to have same version,
 # this is to avoid dependencies conflicts (activesupport version, for example)
-gem 'activerecord', '3.0.5'
 require 'delayed_job_active_record'
 
 class DjMigration < ActiveRecord::Migration

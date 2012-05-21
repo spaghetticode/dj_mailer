@@ -13,3 +13,7 @@ end
 Then /^I should see a new delayed_job record in the table$/ do
   Delayed::Job.count.should == 1
 end
+
+Then /^the email queue should be empty$/ do
+  ActionMailer::Base.deliveries.should be_empty
+end
