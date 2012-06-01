@@ -37,6 +37,12 @@ Or install it yourself as:
 ```
 
 
+## Documentation
+
+You can find some more documentation on the workings of the gem on relish:
+https://www.relishapp.com/spaghetticode/dj-mailer/docs
+
+
 ## Tests
 
 to run the specs:
