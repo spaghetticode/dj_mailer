@@ -36,6 +36,15 @@ module DjMailer
             end
           end
         end
+
+        it 'should delegate to original method_missing if this environment is excluded' do
+          with_stub_const(:Rails, double(:env => 'test')) do
+            with_excluded_environments([:test]) do
+              subject.should_receive(:method_missing_without_delay)
+              subject.method_missing_with_delay(:responding)
+            end
+          end
+        end
       end
     end
   end

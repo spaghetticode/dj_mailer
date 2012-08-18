@@ -15,7 +15,7 @@ module DjMailer
     end
 
     def method_missing_with_delay(method, *args)
-      if respond_to?(method) and !caller.grep('delayed_job').present?
+      if !environment_excluded? && respond_to?(method) and !caller.grep('delayed_job').present?
         enqueue_with_delayed_job(method, *args)
       else
         method_missing_without_delay(method, *args)
@@ -26,6 +26,18 @@ module DjMailer
       delay.send(method, *args).tap do |dj_instance|
         dj_instance.extend Deliverable
       end
+    end
+
+    def environment_excluded?
+      defined?(Rails) && ::DjMailer::Delayable.excluded_environments.include?(Rails.env.to_sym)
+    end
+
+    def self.excluded_environments=(*environments)
+      @@excluded_environments = environments && environments.flatten.collect! { |env| env.to_sym }
+    end
+
+    def self.excluded_environments
+      @@excluded_environments ||= []
     end
   end
 end
