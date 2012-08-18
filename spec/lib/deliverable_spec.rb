@@ -21,7 +21,7 @@ module DjMailer
           before {subject.should_receive(:respond_to?).and_return(true)}
 
           context 'when the caller is delayed_job' do
-            it 'should delegate to the original method_missing' do
+            it 'delegates to the original method_missing' do
               subject.stub(:caller => ["/gems/delayed_job-3.0.2/lib/delayed/performable_mailer.rb:6:in `perform'"])
               subject.should_receive(:method_missing_without_delay)
               subject.method_missing_with_delay(:responding)
@@ -29,7 +29,7 @@ module DjMailer
           end
 
           context 'when the caller is not delayed_job' do
-            it 'should equeue the email for late delivery' do
+            it 'equeues the email for late delivery' do
               subject.stub(:caller => [])
               subject.should_receive(:enqueue_with_delayed_job)
               subject.method_missing_with_delay(:responding)
@@ -37,7 +37,7 @@ module DjMailer
           end
         end
 
-        it 'should delegate to original method_missing if this environment is excluded' do
+        it 'delegates to original method_missing if this environment is excluded' do
           with_stub_const(:Rails, double(:env => 'test')) do
             with_excluded_environments([:test]) do
               subject.should_receive(:method_missing_without_delay)

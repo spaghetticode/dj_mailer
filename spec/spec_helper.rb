@@ -1,6 +1,5 @@
 require File.expand_path('../../lib/dj_mailer', __FILE__)
 
-
 def with_stub_const(const, value)
   if Object.const_defined?(const)
     begin
