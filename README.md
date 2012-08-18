@@ -36,6 +36,15 @@ Or install it yourself as:
   gem install dj_mailer
 ```
 
+## Configuration
+
+Delayed e-mails is an awesome thing in production environments, but for e-mail specs/tests in testing environments it can be a mess causing specs/tests to fail because the e-mail haven't been sent directly. Therefore you can configure what environments that should be excluded like so:
+
+```ruby
+  # config/initializers/dj_mailer.rb
+
+  DjMailer::Delayable.excluded_environments = [:test, :cucumber]  # etc.
+```
 
 ## Documentation
 
