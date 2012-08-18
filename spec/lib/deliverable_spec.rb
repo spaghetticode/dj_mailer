@@ -22,7 +22,7 @@ module DjMailer
 
           context 'when the caller is delayed_job' do
             it 'should delegate to the original method_missing' do
-              subject.stub(:caller => ['delayed_job'])
+              subject.stub(:caller => ["/gems/delayed_job-3.0.2/lib/delayed/performable_mailer.rb:6:in `perform'"])
               subject.should_receive(:method_missing_without_delay)
               subject.method_missing_with_delay(:responding)
             end

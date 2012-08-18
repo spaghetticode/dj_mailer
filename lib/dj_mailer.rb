@@ -15,7 +15,7 @@ module DjMailer
     end
 
     def method_missing_with_delay(method, *args)
-      if !environment_excluded? && respond_to?(method) and !caller.grep('delayed_job').present?
+      if !environment_excluded? && respond_to?(method) and !caller.grep(/delayed_job/).present?
         enqueue_with_delayed_job(method, *args)
       else
         method_missing_without_delay(method, *args)
