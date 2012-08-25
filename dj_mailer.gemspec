@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["andrea@spaghetticode.it"]
   gem.description   = %q{send automatically all emails via delayed_job}
   gem.summary       = %q{Allows to send all ActionMailer 3 emails via delayed_job in a transparent way}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/spaghetticode/dj_mailer"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
